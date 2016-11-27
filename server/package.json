@@ -1,0 +1,31 @@
+{
+  "name": "self-server-demo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "engines": {
+    "node": "6.9.1",
+    "npm": "3.10.8"
+  },
+  "author": "Lucas Isasmendi",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "consolidate": "^0.14.5",
+    "crypto-js": "^3.1.8",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "path": "^0.12.7",
+    "randomstring": "^1.1.5",
+    "socket.io": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
+  }
+}
