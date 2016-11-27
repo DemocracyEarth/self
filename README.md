@@ -35,6 +35,8 @@ Self Identity Management for CryptoID Logins
 
 0. **Confirm Login**
 
+    Check your token in https://bcidlogin.herokuapp.com/users
+    
     Once all the data from previous step is valid, you can proceed to login.
 
 0. **Login Success**
