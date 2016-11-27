@@ -45,7 +45,7 @@ server.listen(port);
 let serverURL
 if(process.env.NODE_ENV === 'production'){
   // replace here with your qrcode generator URL
-  serverURL = 'https://bcidlogin.herokuapp.com';
+  serverURL = 'https://selfdemo.herokuapp.com';
 } else {
   serverURL = 'http://localhost:'+port;
 }

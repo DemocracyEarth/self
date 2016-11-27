@@ -11,9 +11,9 @@ Self Identity Management for CryptoID Logins
 
 0. **Open server demo**
 
-    Open the [server demo](https://bcidlogin.herokuapp.com/) to get a QR code login or follow [these steps](server/REAMDE.md) to configure your own server.
+    Open the [server demo](https://selfdemo.herokuapp.com/) to get a QR code login or follow [these steps](server/REAMDE.md) to configure your own server.
 
-    server demo url: https://bcidlogin.herokuapp.com/
+    server demo url: https://selfdemo.herokuapp.com/
 
     Or use the demo server code to include this feature in your login process.
 
@@ -35,7 +35,7 @@ Self Identity Management for CryptoID Logins
 
 0. **Confirm Login**
 
-    Check your token in https://bcidlogin.herokuapp.com/users
+    Check your token in https://selfdemo.herokuapp.com/users
     
     Once all the data from previous step is valid, you can proceed to login.
 
