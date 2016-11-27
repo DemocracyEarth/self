@@ -1,0 +1,33 @@
+<ion-view view-title="Scanner">
+  <ion-content class="padding">
+    <button class="button button-block button-positive" ng-click="vm.scan()">
+      <i class="icon ion-qr-scanner"></i> Scan Access QR Code
+    </button>
+
+    <div class="card" ng-show="vm.scanvalid===true">
+        <div class="item item-divider">Scan Results</div>
+        <div class="item item-text-wrap">
+            callback API: {{vm.scanResults.api}}<br>
+            Org Name: {{vm.scanResults.id}}<br>
+            Access Token: {{vm.scanResults.token}}<br>
+            Format : {{vm.scanResults.format}}<br>
+        </div>
+    </div>
+    <div ng-show="vm.scanvalid===true">
+      <button class="button button-block button-positive" ng-click="vm.login()">
+        <i class="icon ion-log-in"></i>Log in
+      </button>
+    </div>
+    <div class="card" ng-show="vm.error===true">
+        <div class="item item-text-wrap">
+            {{vm.errormsg}}
+        </div>
+    </div>
+    <div class="card" ng-show="vm.loginok===true">
+        <div class="item item-divider">Login success!!</div>
+        <div class="item item-text-wrap">
+            {{vm.loginokmsg}}
+        </div>
+    </div>
+  </ion-content>
+</ion-view>

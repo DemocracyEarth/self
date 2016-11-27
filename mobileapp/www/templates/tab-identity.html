@@ -1,0 +1,21 @@
+<ion-view view-title="Identity">
+  <ion-content class="padding">
+    <div class="card list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">First Name</span>
+        <input type="text" ng-model="vm.user.fname" placeholder="First Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Last Name</span>
+        <input type="text" ng-model="vm.user.lname" placeholder="Last Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="vm.user.email" placeholder="Email">
+      </label>
+    </div>
+    <button class="button button-block button-positive" ng-click="vm.saveinfolocal()">
+      <i class="icon ion-ios-recording"></i>Save data Locally
+    </button>
+  </ion-content>
+</ion-view>
