@@ -3,7 +3,7 @@ Self Identity Management for CryptoID Logins.
 
 No more intermediation: Identity owned by the user.
 
-## How it works
+## How it works (scan, check, login)
 
 > Nakamoto, as all mornings opens his favorite website, clicks the login button and something new happens, a QR code appears in the place where the email and password used to be.
 
