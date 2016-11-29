@@ -10,7 +10,7 @@ No more intermediation: Identity owned by the user.
 >...Lets do the graphic first, then continue with the story.
 
 <p align="center">
-  <img src="/docs/img/self-login-process.jpg" width="700">
+  <img src="/docs/img/self-process-basic.jpg" width="850">
 </p>
 
 
