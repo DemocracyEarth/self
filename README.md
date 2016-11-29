@@ -12,7 +12,9 @@ We keep the identity 100% in the hands of the user. We took the decentralization
 
 We believe that the first step to Personal Sovereignty, is own our Personal Identity,  so no single corporation (like  Facebook) or government (think Estonia) owns your credentials. Only you are in control.
 
-The steps to login are: scan, check and login.
+The steps to login are: **scan, check and login**.
+
+The way to implement this in your own site is with our simple **Self-Identity Access Protocol**
 
 ## How it works (scan, check, login)
 
