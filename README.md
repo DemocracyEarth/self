@@ -5,7 +5,7 @@ No more intermediation: Identity owned by the user.
 
 ## How it works
 
-> Nakamoto, as all mornings opens his favorite website, clicks the login button and something new happens, a QR appears in the place where the email and password used to be.
+> Nakamoto, as all mornings opens his favorite website, clicks the login button and something new happens, a QR code appears in the place where the email and password used to be.
 
 >...Lets do the graphic first, then continue with the story.
 
