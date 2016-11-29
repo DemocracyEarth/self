@@ -1,7 +1,18 @@
 # self
 Self Identity Management for CryptoID Logins.
 
+The login process is centralized, you need an email or a third party identity validation that tracks your activities, a password that is stored in a place that you can’t control.
+We changed that, now you keep your identity in your mobile phone, you don’t need email, password, obligatory fields, neither a third party validator.
+
 No more intermediation: Identity owned by the user.
+
+We hack the login process: no password, no email, no tracking, no “others”.
+
+We keep the identity 100% in the hands of the user. We took the decentralization approach to create a login protocol and Cryptography (SHA-256 hash function) to ensure security and identity. We allow users to show the information that they want, when they want and to they want.
+
+We believe that the first step to Personal Sovereignty, is own our Personal Identity,  so no single corporation (like  Facebook) or government (think Estonia) owns your credentials. Only you are in control.
+
+The steps to login are: scan, check and login.
 
 ## How it works (scan, check, login)
 
