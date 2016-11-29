@@ -1,11 +1,22 @@
 # self
-Self Identity Management for CryptoID Logins
+Self Identity Management for CryptoID Logins.
+
+No more intermediation: Identity owned by the user.
 
 ## How it works
 
-- graphic
+> Nakamoto, as all mornings opens his favorite website, clicks the login button and something new happens, a QR appears in the place where the email and password used to be.
 
-- Explanation
+>...Lets do the graphic first, then continue with the story.
+
+<p align="center">
+  <img src="/docs/img/self-login-process.jpg" width="700">
+</p>
+
+
+> Now the story
+
+> ...
 
 ## How to Test
 
