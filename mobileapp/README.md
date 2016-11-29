@@ -1,6 +1,10 @@
 # self Mobile
 This mobile application was made with [ionicframework v1](https://ionicframework.com)
 
+<p align="center">
+  <img src="/docs/img/self-login-process.gif" width="400">
+</p>
+
 ## Build my own APK
 
 To build your own app distribution, follow these steps:
