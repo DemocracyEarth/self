@@ -6,7 +6,7 @@ This mobile application was made with [ionicframework v1](https://ionicframework
 `Zarathustra`
 > Become who you are!
 
-> And once you are awake, you shall remain awake eternally. 
+> And once you are awake, you shall remain awake eternally.
 
 <p align="center">
   <img src="/docs/img/self-login-process.gif" width="400">
@@ -30,26 +30,22 @@ check [ionic v1 getting started](https://ionicframework.com/docs/v1/getting-star
     ```
     Follow the [Android](http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html) and [iOS](http://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html) platform guides to install required tools for iOS and Android development.
 
-0. **Start a project**
-
-    Create an Ionic project using tabs template
+0. **Clone Repository**
 
     ```bash
-    $ ionic start myApp tabs
+    $ git clone https://github.com/DemocracyEarth/self.git
+    $ cd self/mobileapp
     ```    
 
-0. **Copy self project and add plugin**
-
-    replace `myApp/www` with `mobile/www` content and type:
+0. **Install Dependencies**
 
     ```bash
-    $ cd myApp
     $ cordova plugin add https://github.com/phonegap/phonegap-plugin-barcodescanner.git
     ```    
 
-0. **Run it**
+0. **Build App**
 
-    While in myApp directory, for android type:
+    While in mobileapp directory, for android type:
 
     ```bash
     $ ionic platform add android
