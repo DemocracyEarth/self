@@ -1,8 +1,8 @@
-## 0.0.2 "Omicron Reloaded" (2016-12-02)
+## 0.0.2 "Omicron Reloaded" (2016-12-01)
 
 ### Improvements
-* icon, tab color
-* splash screen
+* UX: tab color, button color, title center
+* Brand: icon, splash screen
 * full source code (not only /www)
 
 ## 0.0.1 "The Omicron" (2016-11-26)
