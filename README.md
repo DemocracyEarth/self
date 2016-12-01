@@ -1,3 +1,7 @@
+<p align="center">
+<img src="mobileapp/resources/icon.png" width="200" title="self">
+</p>
+
 # self
 Self Identity Management for CryptoID Logins.
 
