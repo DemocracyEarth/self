@@ -20,6 +20,14 @@ The steps to login are: **scan, check and login**.
 
 The way to implement this in your own site is with our simple **Self-Identity Access Protocol**
 
+**Release:**
+
+`Zarathustra`
+> Become who you are!
+
+> And once you are awake, you shall remain awake eternally.
+
+
 ## How it works (scan, check, login)
 
 > Nakamoto, as all mornings opens his favorite website, clicks the login button and something new happens, a QR code appears in the place where the email and password used to be.
