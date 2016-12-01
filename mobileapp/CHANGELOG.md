@@ -1,3 +1,10 @@
+# 0.1.0 "Omicron Revolutions" (2016-12-03)
+
+### Features
+* Scan and save public and private keys to configure self CryptoID
+* send public key to login
+* decript message from server and send result
+
 ## 0.0.2 "Omicron Reloaded" (2016-12-01)
 
 ### Improvements
