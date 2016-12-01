@@ -1,0 +1,8 @@
+{
+  "name": "self",
+  "release": "Zarathustra",
+  "dependencies": {
+    "ngCordova": "^0.1.27-alpha",
+    "angular-cache": "^4.6.0"
+  }
+}
