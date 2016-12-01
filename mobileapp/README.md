@@ -1,6 +1,13 @@
 # self Mobile
 This mobile application was made with [ionicframework v1](https://ionicframework.com)
 
+**Release:**
+
+`Zarathustra`
+> Become who you are!
+
+> And once you are awake, you shall remain awake eternally. 
+
 <p align="center">
   <img src="/docs/img/self-login-process.gif" width="400">
 </p>
