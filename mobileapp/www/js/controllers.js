@@ -72,17 +72,20 @@ angular.module('self.controllers', [])
   } else {
     vm.ownkey = true;
   }
+  function emptyValues(){
+    vm.scanResult = {
+      public: {
+        key:'',
+        value:'',
+      },
+      private: {
+        key:'',
+        value:'',
+      },
+    }
+  };
+  emptyValues();
 
-  vm.scanResult = {
-    public: {
-      key:'',
-      value:'',
-    },
-    private: {
-      key:'',
-      value:'',
-    },
-  }
   vm.settings = {
     showprivkey: false
   };
@@ -122,5 +125,11 @@ angular.module('self.controllers', [])
     vm.keysready = false;
     vm.ownkey = true;
     vm.keys = vm.scanResult;
+  }
+  vm.clearKeys = function(){
+    KeyCache.put("userkeys",undefined);
+    emptyValues();
+    vm.ownkey = false;
+    vm.keysready = false;
   }
 });
