@@ -1,9 +1,60 @@
 <ion-view view-title="Keys">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableKeys">
-        Visualise Keys
-    </ion-toggle>
-    </ion-list>
+  <ion-content class="padding">
+    <div ng-show="vm.ownkey!==true">
+      <button class="button button-block button-outline button-balanced" ng-click="vm.scan('public')">
+        <i class="icon ion-qr-scanner"></i> Scan Public Key <i class="icon ion-unlocked"></i>
+      </button>
+      <div class="item item-divider">Public Key</div>
+      <div class="item item-text-wrap">
+          Key: {{vm.scanResult['public'].key}}<br>
+          Format : {{vm.scanResult['public'].value}}<br>
+      </div>
+      <button class="button button-block button-outline button-assertive" ng-click="vm.scan('private')">
+        <i class="icon ion-qr-scanner"></i> Scan Private Key <i class="icon ion-lock-combination"></i>
+      </button>
+      <div class="item item-divider">Private Key</div>
+      <div class="item item-text-wrap">
+        Key: {{vm.scanResult['private'].key}}<br>
+        Format : {{vm.scanResult['private'].value}}<br>
+      </div>
+    </div>
+    <div ng-show="vm.ownkey!==true && vm.keysready===true">
+      <button class="button button-block button-outline button-dark" ng-click="vm.saveKeys()">
+        <i class="icon ion-unlocked"></i> Save Keys <i class="icon ion-lock-combination"></i>
+      </button>
+    </div>
+    <div ng-show="vm.ownkey===true">
+      <div class="list card">
+        <div class="item item-avatar">
+          <i class="icon ion-unlocked"></i>
+          <h2>Public key</h2>
+          <p>You can safelly share this</p>
+        </div>
+        <div class="item item-body">
+          <p>
+            {{vm.keys.public.key}}
+          </p>
+        </div>
+      </div>
+      <ion-list>
+        <ion-toggle  ng-model="vm.settings.showprivkey">
+          Visualise Private Key
+        </ion-toggle>
+      </ion-list>
+      <div ng-show="vm.settings.showprivkey===true">
+        <div class="list card">
+          <div class="item item-avatar">
+            <i class="icon ion-lock-combination"></i>
+            <h2>Private key</h2>
+            <p>You shouldn't share this</p>
+          </div>
+          <div class="item item-body">
+            <p>
+              {{vm.keys.private.key}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

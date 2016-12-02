@@ -1,12 +1,14 @@
 angular.module('self.services', [])
-.factory('Key', function() {
+.factory('KeyCache', function(CacheFactory) {
+  CacheFactory("userkeys", { storageMode: "localStorage"});
+  self.userdata = CacheFactory.get("userkeys");
 
   return {
-    newKey: function() {
-      return chats;
+    put: function(key, value) {
+      return self.userdata.put(key, value);
     },
-    removeKey: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    get: function(key) {
+      return self.userdata.get(key)
     },
     getKey: function(chatId) {
       return null;
