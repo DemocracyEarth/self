@@ -1,17 +1,17 @@
 angular.module('self.services', [])
 .factory('KeyCache', function(CacheFactory) {
   CacheFactory("userkeys", { storageMode: "localStorage"});
-  self.userdata = CacheFactory.get("userkeys");
+  self.userkeys = CacheFactory.get("userkeys");
 
   return {
     put: function(key, value) {
-      return self.userdata.put(key, value);
+      return self.userkeys.put(key, value);
     },
     get: function(key) {
-      return self.userdata.get(key)
+      return self.userkeys.get(key)
     },
-    getKey: function(chatId) {
-      return null;
+    clear: function(key) {
+      return self.userkeys.remove(key);
     }
   };
 })
@@ -26,8 +26,8 @@ angular.module('self.services', [])
     get: function(key) {
       return self.userdata.get(key)
     },
-    getKey: function(chatId) {
-      return null;
+    clear: function(key) {
+      return self.userdata.remove(key);
     }
   };
 })

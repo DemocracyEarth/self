@@ -127,7 +127,7 @@ angular.module('self.controllers', [])
     vm.keys = vm.scanResult;
   }
   vm.clearKeys = function(){
-    KeyCache.put("userkeys",undefined);
+    KeyCache.clear("userkeys");
     emptyValues();
     vm.ownkey = false;
     vm.keysready = false;

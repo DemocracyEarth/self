@@ -6,16 +6,19 @@
       </button>
       <div class="item item-divider">Public Key</div>
       <div class="item item-text-wrap">
-          Key: {{vm.scanResult['public'].key}}<br>
-          Format : {{vm.scanResult['public'].value}}<br>
+        <p>
+          {{vm.scanResult['public'].key}}
+        </p>
       </div>
+      <br>
       <button class="button button-block button-outline button-assertive" ng-click="vm.scan('private')">
         <i class="icon ion-qr-scanner"></i> Scan Private Key <i class="icon ion-lock-combination"></i>
       </button>
       <div class="item item-divider">Private Key</div>
       <div class="item item-text-wrap">
-        Key: {{vm.scanResult['private'].key}}<br>
-        Format : {{vm.scanResult['private'].value}}<br>
+        <p>
+          {{vm.scanResult['private'].key}}
+        </p>
       </div>
     </div>
     <div ng-show="vm.ownkey!==true && vm.keysready===true">
@@ -26,7 +29,7 @@
     <div ng-show="vm.ownkey===true">
       <div class="list card">
         <div class="item item-avatar">
-          <i class="icon ion-unlocked"></i>
+          <i class="icon ion-unlocked balanced"></i>
           <h2>Public key</h2>
           <p>You can safelly share this</p>
         </div>
@@ -38,13 +41,13 @@
       </div>
       <ion-list>
         <ion-toggle  ng-model="vm.settings.showprivkey">
-          Visualise Private Key
+          {{!vm.settings.showprivkey ? 'Show' : 'Hide'}} Private Key
         </ion-toggle>
       </ion-list>
       <div ng-show="vm.settings.showprivkey===true">
         <div class="list card">
           <div class="item item-avatar">
-            <i class="icon ion-lock-combination"></i>
+            <i class="icon ion-lock-combination assertive"></i>
             <h2>Private key</h2>
             <p>You shouldn't share this</p>
           </div>
@@ -59,6 +62,7 @@
       <button class="button button-block button-outline button-dark" ng-click="vm.clearKeys()">
         <i class="icon ion-refresh"></i> Clear Keys
       </button>
+      <br>
     </div>
   </ion-content>
 </ion-view>
