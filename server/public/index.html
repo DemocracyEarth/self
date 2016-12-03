@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>basic example</title>
+<title>self-demo</title>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
@@ -51,7 +51,7 @@
 		var qrcodeJSON = {
 			api: loginAPI,
 			id: asociationID,
-			token: data.text
+			token: data.token
 		};
 		var qrcodetext = JSON.stringify(qrcodeJSON);
 		$("#bccode").text(data.text);

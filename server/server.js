@@ -27,7 +27,7 @@ io.on('connection', function(socket){
   *  send token and server url to the webpage instance
   *  that belongs to the user connected in socket = socket.id
   */
-  io.to(socket.id).emit('receive-token', {text: randomWord, url: serverURL});
+  io.to(socket.id).emit('receive-token', {token: randomWord, url: serverURL});
 
   socket.on('disconnect',function(){
     for(var i=0;i<users.length;i++){
