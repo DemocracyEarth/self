@@ -1,69 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>self-demo</title>
-</head>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <head>
+    <title>self-demo</title>
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../src/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="../src/qrcode.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
-<!--<script type="text/javascript" src="../jquery.qrcode.min.js"></script>
---><script type="text/javascript" src="../src/jquery.qrcode.js"></script>
-<script type="text/javascript" src="../src/qrcode.js"></script>
-<script src="/socket.io/socket.io.js"></script>
+    <p>QR Code Login Token</p>
+    <div id="qrcode"></div>
+    <div id="bccode"></div>
+    <button type="button" name="button">Get new Token</button>
+    <div id="email"></div>
+    <div id="fname"></div>
+    <div id="lname"></div>
+    <div id="awesome"></div>
+    <script>
+      var serverURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+    	console.log("serverURL",serverURL)
+    	var socket = io();
+    	$("button").click(function(){
+    			socket.emit('generate-token');
+    	});
 
-<!--p>Render in table</p>
-<div id="qrcodeTable"></div-->
-<p>QR Code Login Token</p>
-<div id="qrcode"></div>
-<div id="bccode"></div>
-<button type="button" name="button">Get new Token</button>
-<div id="user"></div>
-<div id="key"></div>
-<div id="otras"></div>
-<script>
-  var serverURL = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
-	console.log("serverURL",serverURL)
-	var socket = io();
-	$("button").click(function(){
-	    /* $.get("/token", function(data, status){
-	        console.log("Data: " + data + "\nStatus: " + status);
-					$("#bccode").text(data);
-					$( "#qrcode" ).empty();
-					$('#qrcode').qrcode({text: data});
-	    });*/
-			socket.emit('generate-token');
-	});
+      socket.on('connect', function(){
+    		console.log("connect socket")
+    	});
+      socket.on('auth-ok', function(data){
+    		console.log("auth-ok",data);
+    		$("#qrcode").empty();
+    		$("#email").text(data.email);
+        $("#fname").text(data.fname);
+        $("#lname").text(data.lname);
+        $("#awesome").append("<img id='awesome' src='awesome.gif'/>");
+    	});
+    	socket.on('receive-token', function(data){
+    		console.log("receive-token",data);
+    		var asociationID= 'BCDID Foundation';
+    		var loginAPI = data.url;
+    		var qrcodeJSON = {
+    			api: loginAPI,
+    			id: asociationID,
+    			token: data.token
+    		};
+    		var qrcodetext = JSON.stringify(qrcodeJSON);
+    		$("#bccode").text(data.token);
+    		$("#qrcode").empty();
+    		$('#qrcode').qrcode({text: qrcodetext});
+    	});
+      socket.on('user-logged', function(data){
+    		console.log("user-logged",data)
+        $("#welcome").text(data);
+    	});
 
-  socket.on('connect', function(){
-		console.log("connect socket")
-	});
-  socket.on('auth-ok', function(data){
-		console.log("auth-ok",data);
-		$("#qrcode").empty();
-		$("#user").text(JSON.stringify(data.user));
-    $("#key").text(data.key);
-    $("#otras").text(data.otras);
-	});
-	socket.on('receive-token', function(data){
-		console.log("receive-token",data);
-		var asociationID= 'BCDID Foundation';
-		var loginAPI = data.url +'/login-token';
-		var qrcodeJSON = {
-			api: loginAPI,
-			id: asociationID,
-			token: data.token
-		};
-		var qrcodetext = JSON.stringify(qrcodeJSON);
-		$("#bccode").text(data.text);
-		$("#qrcode").empty();
-		$('#qrcode').qrcode({text: qrcodetext});
-	});
-  socket.on('user-logged', function(data){
-		console.log("user-logged",data)
-    $("#welcome").text(data);
-	});
-
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
