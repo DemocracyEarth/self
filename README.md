@@ -59,7 +59,7 @@ The way to implement this in your own site is with our simple **Self-Identity Ac
 
 0. **Load the App & Scan**
 
-    In your desktop computer, go to https://walletgenerator.net/ or http://bitcoinqrcode.org/ and generate your Bitcoin Address and Private Key.
+    In your desktop computer, go to https://walletgenerator.net/ or https://www.bitaddress.org and generate your Bitcoin Address and Private Key.
 
     Open the app, click the **Keys tab**, scan the previous Bitcoin Address as Public key, and the Private Key.
 
