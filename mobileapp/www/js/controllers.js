@@ -1,5 +1,5 @@
 angular.module('self.controllers', [])
-.controller('ScannerCtrl', function($scope,$http, $rootScope, $cordovaBarcodeScanner, SelfCache) {
+.controller('ScannerCtrl', function($scope,$http, $rootScope, $cordovaBarcodeScanner, SelfCache, KeyCache) {
   var infoFromServer;
   var vm = this;
   vm.scanvalid = false;
@@ -29,31 +29,50 @@ angular.module('self.controllers', [])
   vm.scanResults = '';
   vm.login = function() {
     var user = SelfCache.get('userdata');
-    var userinfo = {
-      user: user,
-      key: 'userk-public-key',
-      otras: 'entrepreneur'
-    };
-    $http.post( infoFromServer.api, {token: infoFromServer.token, userinfo:userinfo })
-    .success(function(data, status){
-       if(data.login == 'ok'){
-         vm.scanvalid = false;
-         vm.error = false;
-         vm.loginok = true;
-         vm.loginokmsg = 'You are logged in into '+infoFromServer.id;
-         console.log("Login on the server Ok.", data, status);
-       } else {
-         console.log("Login on the server Ok.", data, status);
+    var publicKey = KeyCache.getPublicKey();
+
+    function decriptMsgValidateIdentity(encriptedMsg){
+      var bytes = CryptoJS.AES.decrypt(encriptedMsg, publicKey);
+      var decriptedMsg = bytes.toString(CryptoJS.enc.Utf8);
+      console.log("decriptedMsg",decriptedMsg);
+      $http.post( infoFromServer.api+'/secret-msg', {token: infoFromServer.token, secretMsg: decriptedMsg , userinfo: user})
+      .success(function(data, status){
+         if(data.status === 'login-ok'){
+           vm.scanvalid = false;
+           vm.error = false;
+           vm.loginok = true;
+           vm.loginokmsg = 'You are logged in into '+infoFromServer.id;
+           console.log("secretkey on server ok.", data, status);
+         } else {
+           vm.scanvalid = false;
+           vm.error = true;
+           vm.errormsg = 'Error: ' + data;
+         }
+      })
+      .error(function(error){
+         console.log("Error while sending secret message to the server.");
          vm.scanvalid = false;
          vm.error = true;
-         vm.errormsg = 'Error: ' + data;
-       }
-    }).error(function(error){
-       console.log("Error while Login on server.");
-       vm.scanvalid = false;
-       vm.error = true;
-       vm.errormsg = 'Error: ' + error;
-    });
+         vm.errormsg = 'Error: ' + error;
+      });
+    }
+    $http.post( infoFromServer.api+'/public-key', {token: infoFromServer.token, publickey: publicKey })
+      .success(function(data, status){
+         if(data.status === 'public-key-ok'){
+           console.log("secretkey on server ok.", data, status);
+           decriptMsgValidateIdentity(data.encryptedmsg);
+         } else {
+           vm.scanvalid = false;
+           vm.error = true;
+           vm.errormsg = 'Error: ' + data;
+         }
+      })
+      .error(function(error){
+         console.log("Error while sending public-key to server.");
+         vm.scanvalid = false;
+         vm.error = true;
+         vm.errormsg = 'Error: ' + error;
+      });
   }
 })
 .controller('IdentityCtrl', function($scope, SelfCache) {

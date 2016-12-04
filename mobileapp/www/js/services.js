@@ -8,10 +8,18 @@ angular.module('self.services', [])
       return self.userkeys.put(key, value);
     },
     get: function(key) {
-      return self.userkeys.get(key)
+      return self.userkeys.get(key);
     },
     clear: function(key) {
       return self.userkeys.remove(key);
+    },
+    getPublicKey: function(){
+      var fullkey = self.userkeys.get('userkeys');
+      return fullkey.public.key;
+    },
+    getPrivateKey: function(){
+      var fullkey = self.userkeys.get('userkeys');
+      return fullkey.private.key;
     }
   };
 })
