@@ -97,6 +97,10 @@ app.post('/public-key', (req, res) => {
       nouser = false;
       console.log(`id ${users[i].id} token: ${tokenin} public Key: ${publicKey}, secretStr: ${users[i].secretStr}`);
       // send encrypted message base on public key to the mobile app
+
+      // TODO: use public key to encrypt the message
+      // in a way that only the private key owner can decrypted
+
       users[i].publicKey = publicKey;
       //let encryptedmsg = CryptoJS.HmacSHA1(users[i].secretStr, publicKey);
       let encryptedmsg = CryptoJS.AES.encrypt(users[i].secretStr, publicKey);

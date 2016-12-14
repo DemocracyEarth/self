@@ -3,7 +3,7 @@
 ### Features
 * Scan and save public and private keys to configure self CryptoID
 * send public key to login
-* decript message from server and send result
+* decrypt message from server and send result
 * logged sites list
 
 ## 0.0.2 "Omicron Reloaded" (2016-12-01)

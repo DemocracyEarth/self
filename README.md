@@ -85,8 +85,16 @@ The way to implement this in your own site is with our simple **Self-Identity Ac
 
 ## Next Steps
 
+### Change Public key encrypt/decrypt
+* Replace public key encryption with signature or hashing, the idea is only private key owner related with public key can decrypt the message.
+
 ### Add login list
 * add a a list in the login tab that shows all the login attempts and the results. Track date and time.
 
 ### Add multiple keys to mobile user wallet
 * add multiple crypto-keys with description and profile data associated.
+* increase data in the profile section.
+* turn on/off data to use in login process.
+
+### Game to generate keys
+* add crypto game to create the random keys.
