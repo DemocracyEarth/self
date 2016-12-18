@@ -14,9 +14,9 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 let users = [];
-
+const Message = require('bitcore-message');
 /***************************************************
-* This section is realted to the webpage
+* This section is related to the webpage
 ****************************************************/
 
 io.on('connection', function(socket){
@@ -86,7 +86,7 @@ app.get('/users', (req, res) => {
 * This section is realted to the mobile application
 ****************************************************/
 /**
- *
+ * Receive a Public key and send a secret string to be signed by the Key owner
  */
 app.post('/public-key', (req, res) => {
   let tokenin = req.body.token;
@@ -96,15 +96,8 @@ app.post('/public-key', (req, res) => {
     if(users[i].token === tokenin){
       nouser = false;
       console.log(`id ${users[i].id} token: ${tokenin} public Key: ${publicKey}, secretStr: ${users[i].secretStr}`);
-      // send encrypted message base on public key to the mobile app
-
-      // TODO: use public key to encrypt the message
-      // in a way that only the private key owner can decrypted
-
       users[i].publicKey = publicKey;
-      //let encryptedmsg = CryptoJS.HmacSHA1(users[i].secretStr, publicKey);
-      let encryptedmsg = CryptoJS.AES.encrypt(users[i].secretStr, publicKey);
-      res.send({ encryptedmsg: encryptedmsg.toString(), status: 'public-key-ok'});
+      res.send({ secretstr: users[i].secretStr, status: 'public-key-ok'});
       break;
     }
   }
@@ -115,12 +108,14 @@ app.post('/public-key', (req, res) => {
 });
 app.post('/secret-msg', (req, res) => {
   let tokenin = req.body.token;
-  let secretMsg = req.body.secretMsg;
+  let signedMsg = req.body.signedMsg;
   let nouser = true;
   for(var i=0;i<users.length;i++){
     if(users[i].token === tokenin){
       nouser = false;
-      if(users[i].secretStr === secretMsg){
+      let verified = new Message(users[i].secretStr).verify(users[i].publicKey, signedMsg);
+      console.log("verified",verified);
+      if(verified){
         console.log(`validated socket.id ${users[i].id} token: ${tokenin} user info: ${req.body.userinfo}`);
         // send ok to the user webpage connected in the socket = users[i].id
         io.to(users[i].id).emit('auth-ok', req.body.userinfo);
@@ -135,15 +130,15 @@ app.post('/secret-msg', (req, res) => {
          */
         break;
       } else{
-        console.log("error secret msg");
+        console.log("error signature invalid");
         // send login error to the mobile app
-        res.send({login:'err-crypto msg invalid'});
+        res.send({status:'err - signature invalid'});
       }
 
     }
   }
   // send login error to the mobile app
   if(nouser){
-    res.send({login:'err-user not found'});
+    res.send({status:'err-user not found'});
   }
 });

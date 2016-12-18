@@ -14,6 +14,7 @@
   "author": "Lucas Isasmendi",
   "license": "MIT",
   "dependencies": {
+    "bitcore-message": "^1.0.2",
     "body-parser": "^1.14.2",
     "consolidate": "^0.14.5",
     "crypto-js": "^3.1.8",

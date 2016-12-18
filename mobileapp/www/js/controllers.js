@@ -2,6 +2,8 @@ angular.module('self.controllers', [])
 .controller('ScannerCtrl', function($scope,$http, $rootScope, $cordovaBarcodeScanner, SelfCache, KeyCache) {
   var infoFromServer;
   var vm = this;
+  var bitcore = require('bitcore-lib');
+  var Message = require('bitcore-message');
   vm.scanvalid = false;
   vm.error = false;
   vm.loginok = false;
@@ -30,12 +32,15 @@ angular.module('self.controllers', [])
   vm.login = function() {
     var user = SelfCache.get('userdata');
     var publicKey = KeyCache.getPublicKey();
+    var privateKey = KeyCache.getPrivateKey();
 
-    function decriptMsgValidateIdentity(encriptedMsg){
-      var bytes = CryptoJS.AES.decrypt(encriptedMsg, publicKey);
-      var decriptedMsg = bytes.toString(CryptoJS.enc.Utf8);
-      console.log("decriptedMsg",decriptedMsg);
-      $http.post( infoFromServer.api+'/secret-msg', {token: infoFromServer.token, secretMsg: decriptedMsg , userinfo: user})
+    function signMsgValidateIdentity(secretStr){
+      var secretKey = bitcore.PrivateKey.fromWIF(privateKey);
+      var signature = Message(secretStr).sign(secretKey);
+
+
+      console.log("secretStr: " + secretStr + "- secretKey: " + secretKey + "- signature:" + signature);
+      $http.post( infoFromServer.api+'/secret-msg', {token: infoFromServer.token, signedMsg: signature , userinfo: user})
       .success(function(data, status){
          if(data.status === 'login-ok'){
            vm.scanvalid = false;
@@ -46,7 +51,8 @@ angular.module('self.controllers', [])
          } else {
            vm.scanvalid = false;
            vm.error = true;
-           vm.errormsg = 'Error: ' + data;
+           console.log("invalid sign from server", data);
+           vm.errormsg = 'Error: ' + data.status;
          }
       })
       .error(function(error){
@@ -59,8 +65,8 @@ angular.module('self.controllers', [])
     $http.post( infoFromServer.api+'/public-key', {token: infoFromServer.token, publickey: publicKey })
       .success(function(data, status){
          if(data.status === 'public-key-ok'){
-           console.log("secretkey on server ok.", data, status);
-           decriptMsgValidateIdentity(data.encryptedmsg);
+           console.log("public-key on server ok.", data, status);
+           signMsgValidateIdentity(data.secretstr);
          } else {
            vm.scanvalid = false;
            vm.error = true;
